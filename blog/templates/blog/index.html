@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Blog Home</title>
+</head>
+<body>
+	<h1>This is the blog home</h1>
+	<a href="{% url 'create' %}">create post</a>
+	<h2>latest from our blog</h2>
+	{% comment %}
+	<ul>
+		{% for post in blogs %}
+			<li>{{post.title}}</li>
+		{% endfor %}
+	</ul>
+	{% endcomment %}
+
+
+	{% for post in blogs %}
+		<div>
+			<h2>{{post.title}}</h2>
+			<p>{{post.content}}</p>
+			<p>
+				<strong>Created: {{post.date_created}}</strong>
+
+				<br/>
+
+				<strong>Last Updated: {{post.date_updated}}</strong>
+
+				<br/>
+				<strong>Post ID: {{post.id}}</strong>
+
+				<br/>
+				<strong>Post PK: {{post.pk}}</strong>
+			</p>
+		</div>
+		<div>
+			<a href="{% url 'update' post.id %}">edit</a>
+		</div>
+		<div>
+			<a href="{% url 'delete' post.id %}">delete</a>
+		</div>
+	{% endfor %}
+</body>
+</html>
